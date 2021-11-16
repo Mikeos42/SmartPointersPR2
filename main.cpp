@@ -1,5 +1,10 @@
 #include <iostream>
 
+#include "license.h"
+
 int main() {
-  std::cout << "Hello World!\n";
+  License a("Helmut", 500);
+
+  // std::cout << a.get_guildname() << std::endl;
+  // std::cout << a.get_salary() << std::endl;
 } 
