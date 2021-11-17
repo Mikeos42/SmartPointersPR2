@@ -1,8 +1,10 @@
 #include "license.h"
 
-License::License(std::string name, unsigned int salary) : name{name}, salary{salary} {
+License::License(std::string name, unsigned int salary) : name{name}, salary{salary}, counter{0} {
     if(name == "") throw std::runtime_error("Name can't be empty");
     if(!salary) throw std::runtime_error("Salary can't be 0");
+
+    std::cout << *this; // log
 }
 
 std::string License::get_guildname() const { return name; }

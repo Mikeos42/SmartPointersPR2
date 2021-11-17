@@ -1,12 +1,9 @@
 #include <iostream>
 
 #include "license.h"
+#include "person.h"
 
 int main() {
-  License a("Helmut", 500);
-
-  std::cout << a.get_guildname() << std::endl;
-  std::cout << a.get_salary() << std::endl;
-
-  std::cout << a;
+  // License a("Helmut", 500);
+  Person p("Miki", 1000);
 } 
