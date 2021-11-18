@@ -5,5 +5,4 @@
 
 int main() {
   // License a("Helmut", 500);
-  Person p("Miki", 1000);
 } 

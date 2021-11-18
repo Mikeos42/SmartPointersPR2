@@ -7,17 +7,19 @@
 
 #include "license.h"
 
+// BASE CLASS PERSON
 class Person {
+// protected:
     std::string name;
     unsigned int wealth;
     std::map<std::string, std::unique_ptr<License>> licenses;
 
 public: 
     Person(std::string name, unsigned int wealth=0);
-   //virtual ~Person() = default;
+    virtual ~Person() = default; // FIXME: watch out, commented out
 
     void work(std::string guild);
-    //virtual void work(unsigned int) = 0;
+    virtual void work(unsigned int) = 0;
     void increase_wealth(unsigned int i);
     std::string get_name() const;
     bool pay_fee(unsigned int i);
@@ -27,5 +29,35 @@ public:
 
     virtual std::ostream& print(std::ostream& o) const;
 };
+
+std::ostream& operator<<(std::ostream& o, const Person& rop);
+
+
+// WORKER FROM PERSON
+class Worker :public Person {
+    Worker(std::string name, unsigned int wealth=0);
+
+    void work(unsigned int i);
+
+    std::ostream& print(std::ostream& o) const;
+};
+
+std::ostream& operator<<(std::ostream& o, const Worker& rop);
+
+
+// SUPERWORKER FROM PERSON
+class Superworker :public Person {
+private:
+    unsigned int fee;
+
+public:
+    Superworker(unsigned int fee, std::string name, unsigned int wealth=0);
+
+    void work(unsigned int i);
+
+    std::ostream& print(std::ostream& o) const;
+};
+
+std::ostream& operator<<(std::ostream& o, const Superworker& rop);
 
 #endif

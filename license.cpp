@@ -4,7 +4,7 @@ License::License(std::string name, unsigned int salary) : name{name}, salary{sal
     if(name == "") throw std::runtime_error("Name can't be empty");
     if(!salary) throw std::runtime_error("Salary can't be 0");
 
-    std::cout << *this; // log
+    //std::cout << *this; // log
 }
 
 std::string License::get_guildname() const { return name; }
