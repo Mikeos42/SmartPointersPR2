@@ -1,15 +1,19 @@
 #include "person.h"
 
 // BASE CLASS PERSON
-Person::Person(std::string, unsigned int wealth) : name{name}, wealth{wealth} {
+Person::Person(std::string name, unsigned int wealth) : name{name}, wealth{wealth} {
     if(name == "") throw std::runtime_error("Name empty!");
 }
 
 void Person::work(std::string guild) {
     auto found_at = licenses.find(guild);
     if(found_at != licenses.end())
-        if(found_at->second->valid())
+        if(found_at->second->valid()) {
             found_at->second->use();
+            work(licenses[guild]->get_salary());
+            return;
+        }
+
     throw std::runtime_error("No licenses left"); // this should get executed always
 }
 
@@ -17,8 +21,10 @@ void Person::increase_wealth(unsigned int i) { wealth += i; }
 std::string Person::get_name() const { return name; }
 
 bool Person::pay_fee(unsigned int i) {
-    if(wealth <= i) return false;
-    else return true;
+    if(wealth < i || i == 0) 
+        return false;
+    wealth -= i;
+    return true;
 }
 
 void Person::receive_license(std::unique_ptr<License> l) {
@@ -39,10 +45,9 @@ void Person::transfer_license(std::string l, std::shared_ptr<Person> p) {
 
 bool Person::eligible(std::string l) const {
     auto found_at = licenses.find(l);
-    if(found_at != licenses.end()) // if not end = if found
-        return true;
-    else 
-        return false;
+    if(found_at != licenses.end()) // if found
+        return found_at->second->valid();
+    else return false;
 }
 
 std::ostream& Person::print(std::ostream& o) const {
@@ -77,6 +82,6 @@ Superworker::Superworker(unsigned int fee, std::string name, unsigned int wealth
 void Superworker::work(unsigned int i) { increase_wealth(i + fee); }
 
 std::ostream& Superworker::print(std::ostream& o) const {
-    o << "[Superworker ";
+    o << "[Superworker: ";
     return Person::print(o);
 }

@@ -35,6 +35,7 @@ std::ostream& operator<<(std::ostream& o, const Person& rop);
 
 // WORKER FROM PERSON
 class Worker :public Person {
+public:
     Worker(std::string name, unsigned int wealth=0);
 
     void work(unsigned int i);
