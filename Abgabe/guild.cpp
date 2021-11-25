@@ -1,4 +1,14 @@
+#include<string>
+#include<memory>
+#include<vector>
+#include<iostream>
+#include<stdexcept>
+#include<set>
+#include<algorithm>
+#include<map>
 #include "guild.h"
+#include "license.h"
+#include "person.h"
 
 Guild::Guild(std::string name, unsigned fee, unsigned sal, const std::vector<std::shared_ptr<Person>>& players) :
 name{name}, fee{fee}, salary{sal} {

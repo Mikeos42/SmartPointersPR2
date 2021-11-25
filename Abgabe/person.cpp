@@ -1,4 +1,10 @@
+#include<string>
+#include<memory>
+#include<vector>
+#include<iostream>
+#include<map>
 #include "person.h"
+#include "license.h"
 
 // BASE CLASS PERSON
 Person::Person(std::string name, unsigned int wealth) : name{name}, wealth{wealth} {
